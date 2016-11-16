@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="cell" id="KGk-i7-Jjw" customClass="SLProfileTableViewCell" customModule="SwiftyList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baseball, Soccer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOB-0h-HBI">
+                        <rect key="frame" x="131" y="60" width="181" height="17"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Hobbies: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA6-9O-RIS" userLabel="Hobbies Title Label">
+                        <rect key="frame" x="80" y="60" width="52" height="17"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 years old" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgc-CC-Lwr">
+                        <rect key="frame" x="80" y="43" width="66" height="17"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andre Creighton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGZ-VM-oOE" userLabel="Name">
+                        <rect key="frame" x="80" y="19" width="240" height="24"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ueA-em-YHg">
+                        <rect key="frame" x="10" y="19" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ueA-em-YHg" secondAttribute="height" multiplier="1:1" id="Eq3-2Q-X6V"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQS-pl-flt">
+                        <rect key="frame" x="157" y="43" width="27" height="17"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T46-gb-evu" userLabel="Thin Line View">
+                        <rect key="frame" x="151" y="43" width="1" height="17"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="0.5" id="NMp-zF-Mrx"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="nQS-pl-flt" firstAttribute="height" secondItem="Sgc-CC-Lwr" secondAttribute="height" id="0NU-Ly-w68"/>
+                    <constraint firstItem="nQS-pl-flt" firstAttribute="top" secondItem="Sgc-CC-Lwr" secondAttribute="top" id="AFz-ZG-aQO"/>
+                    <constraint firstItem="tGZ-VM-oOE" firstAttribute="height" secondItem="ueA-em-YHg" secondAttribute="height" multiplier="0.4" id="B3f-me-mj3"/>
+                    <constraint firstItem="kOB-0h-HBI" firstAttribute="leading" secondItem="UA6-9O-RIS" secondAttribute="trailing" constant="-1" id="CHG-el-LyC"/>
+                    <constraint firstItem="ueA-em-YHg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DNf-LC-igw"/>
+                    <constraint firstItem="UA6-9O-RIS" firstAttribute="top" secondItem="Sgc-CC-Lwr" secondAttribute="bottom" id="Et8-g3-kJy"/>
+                    <constraint firstItem="Sgc-CC-Lwr" firstAttribute="top" secondItem="tGZ-VM-oOE" secondAttribute="bottom" id="HSD-5g-ZvW"/>
+                    <constraint firstItem="tGZ-VM-oOE" firstAttribute="top" secondItem="ueA-em-YHg" secondAttribute="top" id="IBd-cR-856"/>
+                    <constraint firstItem="T46-gb-evu" firstAttribute="height" secondItem="Sgc-CC-Lwr" secondAttribute="height" id="IeY-3Z-hFP"/>
+                    <constraint firstItem="UA6-9O-RIS" firstAttribute="leading" secondItem="ueA-em-YHg" secondAttribute="trailing" constant="10" id="NbQ-gH-5bn"/>
+                    <constraint firstAttribute="trailing" secondItem="tGZ-VM-oOE" secondAttribute="trailing" id="UlI-fk-3Kl"/>
+                    <constraint firstItem="T46-gb-evu" firstAttribute="top" secondItem="tGZ-VM-oOE" secondAttribute="bottom" id="VPC-VM-I2X"/>
+                    <constraint firstItem="T46-gb-evu" firstAttribute="leading" secondItem="Sgc-CC-Lwr" secondAttribute="trailing" constant="5" id="buF-BW-ufb"/>
+                    <constraint firstItem="Sgc-CC-Lwr" firstAttribute="leading" secondItem="ueA-em-YHg" secondAttribute="trailing" constant="10" id="dDX-mQ-aKk"/>
+                    <constraint firstItem="kOB-0h-HBI" firstAttribute="top" secondItem="UA6-9O-RIS" secondAttribute="top" id="hya-WP-aHr"/>
+                    <constraint firstItem="nQS-pl-flt" firstAttribute="leading" secondItem="T46-gb-evu" secondAttribute="trailing" constant="5" id="oqp-g5-mCg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="kOB-0h-HBI" secondAttribute="trailing" id="p9D-xb-90t"/>
+                    <constraint firstItem="ueA-em-YHg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="shy-Tc-RJc"/>
+                    <constraint firstItem="tGZ-VM-oOE" firstAttribute="leading" secondItem="ueA-em-YHg" secondAttribute="trailing" constant="10" id="sxg-5j-3pj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="ueA-em-YHg" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" multiplier="0.6" id="zrR-mA-xk0"/>
+            </constraints>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="ageLabel" destination="Sgc-CC-Lwr" id="Rn5-qM-OeH"/>
+                <outlet property="genderLabel" destination="nQS-pl-flt" id="haw-X9-dRT"/>
+                <outlet property="hobbiesDescriptionLabel" destination="kOB-0h-HBI" id="APN-pr-Bt7"/>
+                <outlet property="nameLabel" destination="tGZ-VM-oOE" id="M4F-Bc-E1d"/>
+                <outlet property="profileImageView" destination="ueA-em-YHg" id="7iB-m0-pUC"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="82"/>
+        </tableViewCell>
+    </objects>
+</document>
