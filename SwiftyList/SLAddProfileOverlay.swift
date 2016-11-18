@@ -10,15 +10,19 @@ import UIKit
 
 class SLAddProfileOverlay: UIView {
     
+    @IBOutlet var cancelButton: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet var addProfileButton: UIButton!
+    @IBOutlet var firstnameTextField: UITextField!
+    @IBOutlet var lastnameTextField: UITextField!
+    @IBOutlet var hobbyTextField: UITextField!
+    @IBOutlet var ageTextField: UITextField!
+    @IBOutlet var addPhotoImageView: UIImageView!
     
     override init(frame: CGRect){
         
         super.init(frame: frame)
         setUpView()
-        
-        
         
         
     }
@@ -37,11 +41,44 @@ class SLAddProfileOverlay: UIView {
         UINib(nibName: "SLAddProfileOverlay", bundle: nil).instantiate(withOwner: self, options: nil)
         addSubview(contentView!)
         contentView.frame = bounds
+       
         
+    }
+    
+    @IBAction func whenCancelButtonTapped(_ sender: Any) {
+        
+        let notification = Notification.Name("cancel tapped")
+        NotificationCenter.default.post(name: notification, object: nil)
         
         
         
     }
     
+    @IBAction func whenAddPhotoButtonTapped(_ sender: Any) {
+        
+        
+        let notification = Notification.Name("add photo")
+        NotificationCenter.default.post(name: notification, object: nil)
+        
+        
+    }
+    
+    @IBAction func whenAddProfileButtonTapped(_ sender: Any) {
+        
+        
+        let notfication = Notification.Name("add profile")
+        NotificationCenter.default.post(name: notfication, object: nil)
+        
+    
+        
+        
+    }
+    
+    
     
 }
+
+
+    
+    
+

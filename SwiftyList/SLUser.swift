@@ -10,12 +10,12 @@ import UIKit
 
 class SLUser: NSObject {
     
-    var id     : Int!
-    var gender : Character!
+    var id     : String!
+    var gender : String!
     var name   : String!
-    var age    : Int!
+    var age    : String!
     
-    init(gender: Character, name: String, age: Int, id: Int) {
+    init(gender: String, name: String, age: String, id: String) {
         super.init()
         
         self.gender = gender
@@ -27,6 +27,18 @@ class SLUser: NSObject {
     }
     
     
+    
+    
+    func addUserToFirebase(){
+        
+        
+        
+        
+        
+        
+        
+        
+    }
     
 
 }

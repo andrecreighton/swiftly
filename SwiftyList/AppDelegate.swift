@@ -15,7 +15,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var launchScreen    : SLTableViewController?
+    var launchScreen    : SLLaunchViewController?
     var profileScreen   : SLProfileViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Embeding nav controller in tableviewcontroller and viewcontroller
         
         let navController = UINavigationController()
-        launchScreen = SLTableViewController()
+        launchScreen = SLLaunchViewController()
         profileScreen = SLProfileViewController()
         navController.viewControllers = [launchScreen!]
         
