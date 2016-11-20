@@ -18,9 +18,36 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
     var newView        = SLAddProfileOverlay()
     let imagePicker    = UIImagePickerController()
     var thisRef        : FIRDatabaseReference!
+    var userArray      = [SLUser]()
     
     
+    func observeDatabase(){
+        
+        
+        thisRef.observe(.childAdded, with: {(snapshot:FIRDataSnapshot) -> Void in
+            
+            
+            let userDicitonary = snapshot.value as? NSDictionary
+            
+            
+            let name = userDicitonary?["Name"] as! String
+            let age  = userDicitonary?["Age"] as! String
+            let gender = userDicitonary?["Gender"] as! String
+            let hobbies = userDicitonary?["Hobbies"] as! String
+            let uniqueID = userDicitonary?["UniqueID"] as! String
+            
+
+            self.userArray.append((SLUser(name: name, age: age, gender: gender, hobbies: hobbies, uniqueID: uniqueID)))
+            self.profileTableView.reloadData()
+            
+        })
+        
+        
+        
+        
+    }
     
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField == newView.firstnameTextField) {
@@ -32,6 +59,11 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         if (textField == newView.hobbyTextField) {
             newView.ageTextField.becomeFirstResponder()
         }
+        if (textField == newView.ageTextField) {
+            newView.ageTextField.endEditing(true)
+        }
+
+        
         
         
         return true
@@ -82,7 +114,7 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    func notifyCancelTapped(){
+    func removeOverlay(){
         
         newView.firstnameTextField.endEditing(true)
         newView.lastnameTextField.endEditing(true)
@@ -109,6 +141,8 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
             
         }, completion: nil)
         
+        
+           self.profileTableView.isUserInteractionEnabled = true
     }
     
     
@@ -127,66 +161,34 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        
-        return 5
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        let cell = Bundle.main.loadNibNamed("SLProfileTableViewCell", owner: self, options: nil)?.first as! SLProfileTableViewCell
-        
-        cell.profileImageView.image = UIImage(named: "lalala")?.circleMask
-        
-        
-        
-        return cell;
-        
-    }
-    
-    @IBAction func whenFilterButtonTapped(_ sender: Any) {
-        
-        
-        
-        
 
-    }
-
-    @IBAction func whenAddPhotoButtonTapped(_ sender: Any) {
-        
-        
-        
-        
-        
-    }
     
     func notifyAddProfileTapped(){
+  
+        
+        let randomnumber = Int(arc4random_uniform(100)) + 1000
+       
+        let uniqueID = String(format: "%d", randomnumber)
+        
+        let name = newView.firstnameTextField.text! + " " + newView.lastnameTextField.text!
+        let age = newView.ageTextField.text!
+        let hobbies = newView.hobbyTextField.text!
+        let gender = newView.genderSegmentControl.titleForSegment(at: newView.genderSegmentControl.selectedSegmentIndex)!
         
         
+        let user = SLUser(name: name, age: age, gender: gender, hobbies: hobbies, uniqueID: uniqueID)
         
-        
-        
-        
-        
-        
+        thisRef.childByAutoId().setValue(user.userDicitonary)
+        removeOverlay()
+
     }
+
+   // MARK: - UIImagePickerController Delegate Methods
+    
     
     func notifyPhotoTapped(){
         
-        
-        
-        print("photo button responds")
+
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         self.present(imagePicker, animated: true, completion: nil)
@@ -196,16 +198,18 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    // MARK: - UIImagePickerController Delegate Methods
+ 
     
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("did cancel")
+        
+        self.dismiss(animated: true, completion: nil)
         
         
         
     }
     
+ 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -219,6 +223,49 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         
         
     }
+       // MARK: - TableView Methods
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
+        
+        return userArray.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        let cell = Bundle.main.loadNibNamed("SLProfileTableViewCell", owner: self, options: nil)?.first as! SLProfileTableViewCell
+        
+        cell.profileImageView.backgroundColor = UIColor.lightGray
+        cell.nameLabel.text! = userArray[indexPath.row].name
+        let age = userArray[indexPath.row].age
+        let ageString = String(format: "%@ years old", age)
+        cell.ageLabel.text!  = ageString
+        
+        cell.genderLabel.text! = userArray[indexPath.row].gender
+        if(cell.genderLabel.text == "Female"){
+            
+            cell.contentView.backgroundColor = UIColor(colorLiteralRed: 14/255, green: 176/255, blue: 25/255, alpha: 0.75)
+        }
+        
+        cell.hobbiesDescriptionLabel.text! = userArray[indexPath.row].hobbies
+        
+        
+        // 14 176 25 .75
+        
+        return cell;
+        
+    }
+    
     
    // MARK: - viedDidLoad()
     
@@ -226,7 +273,8 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         thisRef = FIRDatabase.database().reference().child("users")
+        thisRef = FIRDatabase.database().reference().child("users")
+        observeDatabase()
         
         
         
@@ -249,7 +297,7 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         
         NotificationCenter.default.addObserver(self, selector: #selector(notifyPhotoTapped), name: NSNotification.Name(rawValue: "add photo"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(notifyCancelTapped), name: NSNotification.Name(rawValue: "cancel tapped"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(removeOverlay), name: NSNotification.Name(rawValue: "cancel tapped"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(notifyAddProfileTapped), name: NSNotification.Name(rawValue: "add profile"), object: nil)
         
@@ -260,7 +308,6 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         self.navigationItem.title = "Profiles"
-        
         
         
         

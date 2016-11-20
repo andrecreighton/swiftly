@@ -65,7 +65,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="nQS-pl-flt" firstAttribute="height" secondItem="Sgc-CC-Lwr" secondAttribute="height" id="0NU-Ly-w68"/>
                     <constraint firstItem="nQS-pl-flt" firstAttribute="top" secondItem="Sgc-CC-Lwr" secondAttribute="top" id="AFz-ZG-aQO"/>

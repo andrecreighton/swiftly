@@ -18,6 +18,7 @@ class SLAddProfileOverlay: UIView {
     @IBOutlet var hobbyTextField: UITextField!
     @IBOutlet var ageTextField: UITextField!
     @IBOutlet var addPhotoImageView: UIImageView!
+    @IBOutlet var genderSegmentControl: UISegmentedControl!
     
     override init(frame: CGRect){
         

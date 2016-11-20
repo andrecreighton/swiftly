@@ -18,6 +18,7 @@
                 <outlet property="cancelButton" destination="KA6-dJ-7ob" id="mkZ-hb-wnW"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="bhf-BD-bXH"/>
                 <outlet property="firstnameTextField" destination="NVQ-hj-EoC" id="8g7-ug-hYY"/>
+                <outlet property="genderSegmentControl" destination="IQd-uh-v0Z" id="CEg-b3-Q8Y"/>
                 <outlet property="hobbyTextField" destination="OUK-Xk-VR3" id="yz9-5K-5Gs"/>
                 <outlet property="lastnameTextField" destination="jBt-vp-0Rj" id="Fab-RT-Mwe"/>
             </connections>
@@ -42,13 +43,13 @@
                     </constraints>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="jBt-vp-0Rj">
                     <rect key="frame" x="10" y="85" width="200" height="26.5"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyy-lN-iSm" userLabel="lineView1">
                     <rect key="frame" x="10" y="75" width="200" height="0.5"/>
@@ -106,7 +107,7 @@
                     <rect key="frame" x="48" y="197.5" width="232" height="21.5"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go"/>
                 </textField>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yY-em-xc8">
                     <rect key="frame" x="10" y="227" width="60" height="60"/>

@@ -2,43 +2,46 @@
 //  SLUser.swift
 //  SwiftyList
 //
-//  Created by Andre Creighton on 11/15/16.
+//  Created by Andre Creighton on 11/19/16.
 //  Copyright © 2016 Andre Creighton. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import FirebaseDatabase
 
-class SLUser: NSObject {
+struct SLUser {
     
-    var id     : String!
-    var gender : String!
-    var name   : String!
-    var age    : String!
     
-    init(gender: String, name: String, age: String, id: String) {
-        super.init()
+    let name     : String
+    let age      : String
+    let gender   : String
+    let hobbies  : String
+    let uniqueID : String
+    let userDicitonary : Dictionary<String, String>
+    
+    
+    
+    init (name: String, age: String, gender:String, hobbies: String,  uniqueID: String){
         
-        self.gender = gender
-        self.name   = name
-        self.age    = age
-        self.id     = id
+        self.name        = name
+        self.age         = age
+        self.gender      = gender
+        self.uniqueID    = uniqueID
+        self.hobbies     = hobbies
+        
+        
+        
+        self.userDicitonary = ["Name"       : self.name,
+                               "Age"        : self.age,
+                               "Gender"     : self.gender,
+                               "UniqueID"   : self.uniqueID,
+                               "Hobbies"    : self.hobbies]
         
         
     }
     
+
     
-    
-    
-    func addUserToFirebase(){
-        
-        
-        
-        
-        
-        
-        
-        
-    }
     
 
 }
