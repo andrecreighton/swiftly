@@ -64,6 +64,12 @@
                             <constraint firstAttribute="width" constant="0.5" id="NMp-zF-Mrx"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tS-tl-MeM">
+                        <rect key="frame" x="270" y="8" width="29" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
@@ -80,10 +86,12 @@
                     <constraint firstAttribute="trailing" secondItem="tGZ-VM-oOE" secondAttribute="trailing" id="UlI-fk-3Kl"/>
                     <constraint firstItem="T46-gb-evu" firstAttribute="top" secondItem="tGZ-VM-oOE" secondAttribute="bottom" id="VPC-VM-I2X"/>
                     <constraint firstItem="T46-gb-evu" firstAttribute="leading" secondItem="Sgc-CC-Lwr" secondAttribute="trailing" constant="5" id="buF-BW-ufb"/>
+                    <constraint firstItem="0tS-tl-MeM" firstAttribute="leading" secondItem="tGZ-VM-oOE" secondAttribute="trailing" constant="-50" id="cGD-s0-Vyh"/>
                     <constraint firstItem="Sgc-CC-Lwr" firstAttribute="leading" secondItem="ueA-em-YHg" secondAttribute="trailing" constant="10" id="dDX-mQ-aKk"/>
                     <constraint firstItem="kOB-0h-HBI" firstAttribute="top" secondItem="UA6-9O-RIS" secondAttribute="top" id="hya-WP-aHr"/>
                     <constraint firstItem="nQS-pl-flt" firstAttribute="leading" secondItem="T46-gb-evu" secondAttribute="trailing" constant="5" id="oqp-g5-mCg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kOB-0h-HBI" secondAttribute="trailing" id="p9D-xb-90t"/>
+                    <constraint firstAttribute="topMargin" secondItem="0tS-tl-MeM" secondAttribute="top" id="rL1-Kt-oOS"/>
                     <constraint firstItem="ueA-em-YHg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="shy-Tc-RJc"/>
                     <constraint firstItem="tGZ-VM-oOE" firstAttribute="leading" secondItem="ueA-em-YHg" secondAttribute="trailing" constant="10" id="sxg-5j-3pj"/>
                 </constraints>
@@ -98,6 +106,7 @@
                 <outlet property="hobbiesDescriptionLabel" destination="kOB-0h-HBI" id="APN-pr-Bt7"/>
                 <outlet property="nameLabel" destination="tGZ-VM-oOE" id="M4F-Bc-E1d"/>
                 <outlet property="profileImageView" destination="ueA-em-YHg" id="7iB-m0-pUC"/>
+                <outlet property="uniqueIDLabel" destination="0tS-tl-MeM" id="WTA-nV-DDn"/>
             </connections>
             <point key="canvasLocation" x="34" y="82"/>
         </tableViewCell>

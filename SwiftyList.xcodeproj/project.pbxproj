@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		018185BE5E248CBC18D8D5F4 /* Pods_SwiftyList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F881E755CA84863C43B4010 /* Pods_SwiftyList.framework */; };
 		316045791DE11683008CD1BE /* SLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316045781DE11683008CD1BE /* SLUser.swift */; };
+		31AC7A7E1DE2D2170016813F /* SLProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31AC7A7D1DE2D2170016813F /* SLProfileView.xib */; };
+		31AC7A801DE371C30016813F /* SLFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31AC7A7F1DE371C30016813F /* SLFilterView.xib */; };
+		31AC7A821DE378000016813F /* SLFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC7A811DE378000016813F /* SLFilterView.swift */; };
 		31BB8F831DDF5C3900BECD89 /* SLLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB8F811DDF5C3900BECD89 /* SLLaunchViewController.swift */; };
 		31BB8F841DDF5C3900BECD89 /* SLLaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BB8F821DDF5C3900BECD89 /* SLLaunchViewController.xib */; };
 		31F722491DDACB5E00491D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F722481DDACB5E00491D56 /* AppDelegate.swift */; };
@@ -26,6 +29,10 @@
 /* Begin PBXFileReference section */
 		1F881E755CA84863C43B4010 /* Pods_SwiftyList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		316045781DE11683008CD1BE /* SLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLUser.swift; sourceTree = "<group>"; };
+		31AC7A7A1DE154D30016813F /* SwiftyList-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftyList-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		31AC7A7D1DE2D2170016813F /* SLProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLProfileView.xib; sourceTree = "<group>"; };
+		31AC7A7F1DE371C30016813F /* SLFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLFilterView.xib; sourceTree = "<group>"; };
+		31AC7A811DE378000016813F /* SLFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLFilterView.swift; sourceTree = "<group>"; };
 		31BB8F811DDF5C3900BECD89 /* SLLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLLaunchViewController.swift; sourceTree = "<group>"; };
 		31BB8F821DDF5C3900BECD89 /* SLLaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLLaunchViewController.xib; sourceTree = "<group>"; };
 		31BB8F851DDF873A00BECD89 /* SwiftyList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyList.entitlements; sourceTree = "<group>"; };
@@ -57,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31AC7A831DE378090016813F /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				31AC7A811DE378000016813F /* SLFilterView.swift */,
+				31AC7A7F1DE371C30016813F /* SLFilterView.xib */,
+			);
+			name = Filter;
+			sourceTree = "<group>";
+		};
 		31F7223C1DDACB5E00491D56 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +96,7 @@
 			children = (
 				31BB8F851DDF873A00BECD89 /* SwiftyList.entitlements */,
 				316045781DE11683008CD1BE /* SLUser.swift */,
+				31AC7A7A1DE154D30016813F /* SwiftyList-Bridging-Header.h */,
 				31F722691DDBDA9000491D56 /* View */,
 				31F722711DDBFE0F00491D56 /* Controller */,
 				31F7226A1DDBDF8900491D56 /* app */,
@@ -90,6 +107,8 @@
 		31F722691DDBDA9000491D56 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31AC7A831DE378090016813F /* Filter */,
+				31AC7A7D1DE2D2170016813F /* SLProfileView.xib */,
 				31BB8F821DDF5C3900BECD89 /* SLLaunchViewController.xib */,
 				31F7227B1DDCE29700491D56 /* Add Profile Overlay */,
 				31F722761DDC6BC600491D56 /* ProfileCell */,
@@ -190,6 +209,7 @@
 					31F722441DDACB5E00491D56 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 329GD8M8SH;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -227,8 +247,10 @@
 				31F722751DDC5F2A00491D56 /* GoogleService-Info.plist in Resources */,
 				31F722781DDC6C1E00491D56 /* SLAddProfileOverlay.xib in Resources */,
 				31BB8F841DDF5C3900BECD89 /* SLLaunchViewController.xib in Resources */,
+				31AC7A7E1DE2D2170016813F /* SLProfileView.xib in Resources */,
 				31F722501DDACB5F00491D56 /* Assets.xcassets in Resources */,
 				31F7225B1DDADF7100491D56 /* TableView.png in Resources */,
+				31AC7A801DE371C30016813F /* SLFilterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +311,7 @@
 			files = (
 				31F722611DDBB6CA00491D56 /* SLProfileViewController.swift in Sources */,
 				316045791DE11683008CD1BE /* SLUser.swift in Sources */,
+				31AC7A821DE378000016813F /* SLFilterView.swift in Sources */,
 				31F7227A1DDCE28200491D56 /* SLAddProfileOverlay.swift in Sources */,
 				31F7226D1DDBE13600491D56 /* SLProfileTableViewCell.swift in Sources */,
 				31BB8F831DDF5C3900BECD89 /* SLLaunchViewController.swift in Sources */,
@@ -409,12 +432,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwiftyList/SwiftyList.entitlements;
 				DEVELOPMENT_TEAM = 329GD8M8SH;
 				INFOPLIST_FILE = SwiftyList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.myProject.SwiftyList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyList-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -425,12 +451,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwiftyList/SwiftyList.entitlements;
 				DEVELOPMENT_TEAM = 329GD8M8SH;
 				INFOPLIST_FILE = SwiftyList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.myProject.SwiftyList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyList-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

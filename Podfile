@@ -8,7 +8,9 @@ target 'SwiftyList' do
 pod 'Firebase'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
+pod 'SDWebImage'
 pod 'SnapKit', '~>3.0.2'
+
 
 
 end
