@@ -8,17 +8,27 @@
 
 import UIKit
 
+
+
+@objc protocol FilterViewDelegate{
+    
+    @objc func sendButtonTitle(title : String)
+    
+}
+
+
+
 class SLFilterView: UIView {
+    
+    weak var delegate:FilterViewDelegate?
 
     @IBOutlet var contentView: UIView!
     @IBOutlet var cancelButton: UIButton!
-    @IBOutlet var filterLabel: UILabel!
-    @IBOutlet var genderFilterControl: UISegmentedControl!
-    @IBOutlet var ageSorterLabel: UILabel!
-    @IBOutlet var ageSorterControl: UISegmentedControl!
-    @IBOutlet var nameSortLabel: UILabel!
-    @IBOutlet var nameSorterControl: UISegmentedControl!
-    
+    @IBOutlet var showResultsButton: UIButton!
+    @IBOutlet var genderSegmentedControl: UISegmentedControl!
+    @IBOutlet var nameSegmentedControl: UISegmentedControl!
+    @IBOutlet var ageSegmentedControl: UISegmentedControl!
+    @IBOutlet var resetButton: UIButton!
     
     override init(frame: CGRect){
         
@@ -43,6 +53,9 @@ class SLFilterView: UIView {
         addSubview(contentView!)
         contentView.frame = bounds
         
+        self.showResultsButton.layer.cornerRadius = self.showResultsButton.bounds.size.height/4
+        
+        
         
     }
     
@@ -54,7 +67,53 @@ class SLFilterView: UIView {
         NotificationCenter.default.post(name: notification, object: nil)
         
         
+        
     }
+    
+    @IBAction func whenResetTapped(_ sender: Any) {
+        
+        
+        let notification = Notification.Name("resetFilters")
+        NotificationCenter.default.post(name: notification, object: nil)
+        
+        
+        
+    }
+    
+    @IBAction func whenShowResultsTapped(_ sender: Any) {
+        
+        
+        
+        let notification = Notification.Name("showResults")
+        NotificationCenter.default.post(name: notification, object: nil)
+        
+        
+    }
+    
+    
+    @IBAction func whenNameFilterTapped(_ sender: UIButton) {
+        
+        
+        
+        print(sender.titleLabel!.text!)
+        
+        if(sender.titleLabel?.text != nil){
+            
+            
+            let string = sender.titleLabel!.text!
+            
+            self.delegate?.sendButtonTitle(title: string)
+            
+            
+        
+        }
+        
+        
+        
+        
+    }
+    
+    
     
     
 }

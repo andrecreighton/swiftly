@@ -12,13 +12,14 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
+class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate, FilterViewDelegate {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet var profileTableView: UITableView!
     var blurEffectView : UIVisualEffectView!
     var newView        = SLAddProfileOverlay()
     var filterView     = SLFilterView()
+    let profileView    = SLProfileViewController()
     let imagePicker    = UIImagePickerController()
     var thisRef        : FIRDatabaseReference!
     var storage        : FIRStorage!
@@ -27,7 +28,7 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
    // var userArray      = [SLUser]()
     var userArray      = [Dictionary<String,Any>]()
     var sortedArray    = [Dictionary<String,Any>]()
-    
+    var segueIdentifier : String!
     
     func observeDatabase(){
         
@@ -52,11 +53,14 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
             self.userArray.append(userDictionary as! [String : Any])
             
             
+            
          //   self.userArray.insert((SLUser(name: name, age: age, gender: gender, hobbies: hobbies, uniqueID: uniqueID, photoUrl: photoUrl)), at: 0)
             
             
             
     //Default order of array by uniqueID
+            
+            
             self.sortedArray = (self.userArray as NSArray).sortedArray(using: [NSSortDescriptor(key: "UniqueID", ascending: true)]) as! [[String:Any]]
             
             
@@ -100,6 +104,8 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Functionaity for the overlay and filter views
     
     func addTapped(){
+        
+        self.blurEffectView.alpha = 1
     
         let randomnumber = Int(arc4random_uniform(100)) + 1000
         print(randomnumber)
@@ -108,10 +114,7 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        self.blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        self.view.addSubview(self.blurEffectView)
+   
         self.profileTableView.isUserInteractionEnabled = false
         self.view.bringSubview(toFront: newView)
         
@@ -148,11 +151,11 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         newView.hobbyTextField.text = ""
         newView.ageTextField.text = ""
         newView.addPhotoImageView.image = UIImage(named: "")
-        
+        self.blurEffectView.alpha = 0
         
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem?.isEnabled = true
-        self.blurEffectView.removeFromSuperview()
+        self.blurEffectView.alpha = 0
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.70, initialSpringVelocity: 0, options: [], animations: {
             
@@ -164,6 +167,8 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         
         
            self.profileTableView.isUserInteractionEnabled = true
+        
+        self.filterView.alpha = 0
     }
     
     
@@ -172,9 +177,12 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         print("Show yourself")
+        self.blurEffectView.alpha = 1
+        
         
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.isEnabled = false
+        
         
         self.view.bringSubview(toFront: filterView)
         
@@ -195,7 +203,7 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func filterViewHide(){
         
-        self.blurEffectView.removeFromSuperview()
+        self.blurEffectView.alpha = 0
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.70, initialSpringVelocity: 0, options: [], animations: {
             
@@ -207,12 +215,106 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         self.profileTableView.isUserInteractionEnabled = true
-        
-        
-        
-        
+        self.navigationItem.leftBarButtonItem?.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
         
     }
+    func showResults(){
+        
+        self.userArray.removeAll()
+        
+        let genderName = filterView.genderSegmentedControl.titleForSegment(at: filterView.genderSegmentedControl.selectedSegmentIndex)!
+        
+        if(genderName == "Male" || genderName == "Female"){
+        self.userArray.removeAll()
+            
+        let queryRef = thisRef.queryOrdered(byChild: "Gender").queryEqual(toValue: genderName)
+        queryRef.observe(.childAdded, with: {(snapshot:FIRDataSnapshot) -> Void in
+        
+            
+           let userDictionary = snapshot.value as? NSDictionary
+            
+            
+            self.userArray.append(userDictionary as! [String : Any])
+            self.sortedArray = (self.userArray as NSArray).sortedArray(using: [NSSortDescriptor(key: "UniqueID", ascending: true)]) as! [[String:Any]]
+            
+            DispatchQueue.global(qos: .userInteractive).async {
+                
+                DispatchQueue.main.async(execute: {
+                    self.profileTableView.reloadData()
+                })
+                
+            }
+
+        })
+        
+    
+        }
+        
+        self.filterViewHide()
+        
+    }
+    
+    func resetFilters(){
+        print("reset filters")
+        
+        self.userArray.removeAll()
+        
+        self.observeDatabase()
+        
+        self.filterViewHide()
+        
+        filterView.genderSegmentedControl.selectedSegmentIndex = 1
+      
+    }
+    
+    
+    
+    func sendButtonTitle(title: String) {
+        self.removeOverlay()
+        
+        if(title.contains("Name")){
+            
+            if(title.contains("Ascending")){
+                
+                self.sortedArray.removeAll()
+                self.sortedArray = (self.userArray as NSArray).sortedArray(using: [NSSortDescriptor(key: "Name", ascending: true)]) as! [[String:Any]]
+                self.profileTableView.reloadData()
+              
+                
+            }
+            else{
+                
+                
+                self.sortedArray.removeAll()
+                self.sortedArray = (self.userArray as NSArray).sortedArray(using: [NSSortDescriptor(key: "Name", ascending: false)]) as! [[String:Any]]
+                self.profileTableView.reloadData()
+                
+                
+            }
+        }
+        if(title.contains("Age")){
+            
+            if(title.contains("Ascending")){
+                
+                self.sortedArray.removeAll()
+                self.sortedArray = (self.userArray as NSArray).sortedArray(using: [NSSortDescriptor(key: "Age", ascending: true)]) as! [[String:Any]]
+                self.profileTableView.reloadData()
+                
+                
+            }
+            else{
+                
+                
+                self.sortedArray.removeAll()
+                self.sortedArray = (self.userArray as NSArray).sortedArray(using: [NSSortDescriptor(key: "Age", ascending: false)]) as! [[String:Any]]
+                self.profileTableView.reloadData()
+                
+                
+            }
+        }
+    
+}
     
 // MARK: - Constraints to overlay and filter views
     
@@ -231,8 +333,8 @@ class SLLaunchViewController: UIViewController, UITableViewDelegate, UITableView
         filterView.snp.makeConstraints { (make) in
             
             make.center.equalTo(self.view)
-            make.height.equalTo(self.view.snp.height).multipliedBy(0.8)
-            make.width.equalTo(self.view.snp.width).multipliedBy(0.95)
+            make.height.equalTo(self.view.snp.height).multipliedBy(0.7)
+            make.width.equalTo(self.view.snp.width).multipliedBy(0.85)
             
             
         }
@@ -330,7 +432,7 @@ func navigationBarSettings(){
     
     
     self.navigationController?.navigationBar.isTranslucent = false
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Create ", style: .plain, target: self, action: #selector(addTapped))
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterViewShow))
     self.navigationItem.title = "Profiles"
     
@@ -339,6 +441,9 @@ func navigationBarSettings(){
     
 }
 
+// MARK: - Notification Central
+    
+    
 func loadNotificationStack(){
     
     
@@ -351,9 +456,9 @@ func loadNotificationStack(){
     
     NotificationCenter.default.addObserver(self, selector: #selector(filterViewHide), name:NSNotification.Name(rawValue:"filterCancel"), object: nil)
     
+    NotificationCenter.default.addObserver(self, selector: #selector(resetFilters), name: NSNotification.Name(rawValue: "resetFilters"), object: nil)
     
-    
-    
+    NotificationCenter.default.addObserver(self, selector: #selector(showResults), name:NSNotification.Name(rawValue:"showResults"), object: nil)
     
     
 }
@@ -402,7 +507,8 @@ func loadNotificationStack(){
 //        
     
         
-                cell.nameLabel.text! = self.sortedArray[indexPath.row]["Name"] as! String
+                let nameString = self.sortedArray[indexPath.row]["Name"] as! String
+                cell.nameLabel.text! = nameString
                 let age = self.sortedArray[indexPath.row]["Age"] as! String
                 let ageString = String(format: "%@ years old", age)
                 cell.ageLabel.text!  = ageString
@@ -418,13 +524,26 @@ func loadNotificationStack(){
         
                 let numberString = String(describing: self.sortedArray[indexPath.row]["UniqueID"] as! NSNumber)
                 cell.uniqueIDLabel.text! = numberString
-        
-        
-        
-        
+    
+       
         
             return cell;
         
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let userDictionary = self.sortedArray[indexPath.row]
+        print(userDictionary)
+        
+        
+        
+        let destination = SLProfileViewController(nibName: "SLProfileView", bundle: nil)
+        
+        navigationController?.pushViewController(destination, animated: true)
+        
+        
+
     }
    // MARK: - viedDidLoad()
     
@@ -436,30 +555,27 @@ func loadNotificationStack(){
         contentView.frame = self.view.bounds
         
         
-        // Firebase Database Ref (Optional Storage Reference)
+        // Firebase Database Ref
         
         thisRef = FIRDatabase.database().reference().child("users")
-        self.storage = FIRStorage.storage()
-        self.storageRef = storage.reference(forURL: "gs://swiftly-b01ad.appspot.com/images")
+   
         
         
-        DispatchQueue.global(qos: .userInteractive).async {
-            
-      
-            DispatchQueue.main.async(execute: { 
-                      self.observeDatabase()
-            })
-            
-        }
-        
-        
-        
+        filterView.delegate = self
         filterView.alpha = 0
         newView.alpha = 0
         self.view.addSubview(filterView)
         self.view.addSubview(newView)
         self.constraintsForSubviews()
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        self.blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        self.view.addSubview(self.blurEffectView)
+        self.blurEffectView.alpha = 0
    
+        
+        segueIdentifier = "segue"
         
         // DELEGATIONS
         
@@ -475,8 +591,21 @@ func loadNotificationStack(){
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            
+            DispatchQueue.main.async(execute: {
+                self.observeDatabase()
+            })
+            
+        }
+        
+        
         
     }
 

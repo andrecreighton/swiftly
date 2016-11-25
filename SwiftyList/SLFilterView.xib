@@ -11,14 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SLFilterView" customModule="SwiftyList" customModuleProvider="target">
             <connections>
-                <outlet property="ageSorterControl" destination="WpP-4T-RX4" id="zFK-P4-1GH"/>
-                <outlet property="ageSorterLabel" destination="AcG-03-g3p" id="3Ww-0U-aM4"/>
                 <outlet property="cancelButton" destination="JWP-FS-uL4" id="Ftd-PI-6Eh"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="1ZT-sN-E61"/>
-                <outlet property="filterLabel" destination="qVX-cx-Tcg" id="nci-UJ-yaa"/>
-                <outlet property="genderFilterControl" destination="asW-53-5IL" id="xZT-1C-7KH"/>
-                <outlet property="nameSortLabel" destination="M7R-wg-NEf" id="Zvg-d2-iVa"/>
-                <outlet property="nameSorterControl" destination="gWN-QT-d58" id="ptw-f5-6d0"/>
+                <outlet property="genderSegmentedControl" destination="djk-Vo-orn" id="z1s-Ag-LC2"/>
+                <outlet property="resetButton" destination="Wb1-QX-EAM" id="eyI-dX-Q5X"/>
+                <outlet property="showResultsButton" destination="KaF-4o-sYl" id="Lqi-Re-PJf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,77 +24,117 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaF-4o-sYl">
-                    <rect key="frame" x="0.0" y="384" width="375" height="36"/>
+                    <rect key="frame" x="10" y="379" width="355" height="36"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                     <state key="normal" title="Show Results">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="whenShowResultsTapped:" destination="-1" eventType="touchUpInside" id="jeG-Ls-bQV"/>
+                    </connections>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="asW-53-5IL">
-                    <rect key="frame" x="105" y="90" width="165" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <segments>
-                        <segment title="Male"/>
-                        <segment title="Female"/>
-                    </segments>
-                </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcG-03-g3p">
-                    <rect key="frame" x="142" y="161" width="104" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WpP-4T-RX4">
-                    <rect key="frame" x="101" y="190" width="173" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <segments>
-                        <segment title="Ascending"/>
-                        <segment title="Descending"/>
-                    </segments>
-                </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVX-cx-Tcg">
-                    <rect key="frame" x="142" y="61" width="104" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7R-wg-NEf">
-                    <rect key="frame" x="142" y="267" width="110" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gWN-QT-d58">
-                    <rect key="frame" x="101" y="296" width="173" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <segments>
-                        <segment title="Ascending"/>
-                        <segment title="Descending"/>
-                    </segments>
-                </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-FS-uL4">
-                    <rect key="frame" x="16" y="20" width="48" height="30"/>
-                    <state key="normal" title="Cancel"/>
+                    <rect key="frame" x="16" y="20" width="39" height="30"/>
+                    <state key="normal" title="Close"/>
                     <connections>
                         <action selector="cancelFromFilterTapped:" destination="-1" eventType="touchUpInside" id="NeD-wd-Yt4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wb1-QX-EAM">
+                    <rect key="frame" x="320" y="20" width="39" height="30"/>
+                    <state key="normal" title="Reset"/>
+                    <connections>
+                        <action selector="whenResetTapped:" destination="-1" eventType="touchUpInside" id="xeQ-mr-JuF"/>
+                    </connections>
+                </button>
+                <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQx-mh-YMR" userLabel="Line">
+                    <rect key="frame" x="0.0" y="55" width="375" height="0.5"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="LoW-g3-f61"/>
+                        <constraint firstAttribute="width" constant="375" id="iBb-9q-Or6"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiq-Kp-fDy">
+                    <rect key="frame" x="0.0" y="113.5" width="375" height="36"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Name - Ascending"/>
+                    <connections>
+                        <action selector="whenNameFilterTapped:" destination="-1" eventType="touchUpInside" id="z3l-Vd-E13"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9y-P4-J7u">
+                    <rect key="frame" x="0.0" y="174.5" width="375" height="36"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Name - Descending"/>
+                    <connections>
+                        <action selector="whenNameFilterTapped:" destination="-1" eventType="touchUpInside" id="uJs-gu-NMv"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaB-p9-cdx">
+                    <rect key="frame" x="0.0" y="235.5" width="375" height="36"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Age - Ascending"/>
+                    <connections>
+                        <action selector="whenNameFilterTapped:" destination="-1" eventType="touchUpInside" id="2v9-Jv-iK7"/>
+                    </connections>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="djk-Vo-orn">
+                    <rect key="frame" x="50" y="65.5" width="275" height="29"/>
+                    <segments>
+                        <segment title="Male"/>
+                        <segment title="GENDER" enabled="NO"/>
+                        <segment title="Female"/>
+                    </segments>
+                    <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65T-Ci-jEG">
+                    <rect key="frame" x="0.0" y="296.5" width="375" height="36"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Age - Descending"/>
+                    <connections>
+                        <action selector="whenNameFilterTapped:" destination="-1" eventType="touchUpInside" id="05J-Lm-WmW"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="K9y-P4-J7u" firstAttribute="top" secondItem="aiq-Kp-fDy" secondAttribute="bottom" constant="25" id="0mG-HT-eOr"/>
+                <constraint firstItem="WQx-mh-YMR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1ye-Bd-Skt"/>
+                <constraint firstItem="aiq-Kp-fDy" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="3gF-ps-eqe"/>
                 <constraint firstItem="JWP-FS-uL4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="4Pe-jb-Kxp"/>
+                <constraint firstAttribute="trailing" secondItem="Wb1-QX-EAM" secondAttribute="trailing" constant="16" id="4ws-PR-bNn"/>
+                <constraint firstItem="EaB-p9-cdx" firstAttribute="top" secondItem="K9y-P4-J7u" secondAttribute="bottom" constant="25" id="6PD-7v-4Xh"/>
+                <constraint firstItem="EaB-p9-cdx" firstAttribute="centerX" secondItem="K9y-P4-J7u" secondAttribute="centerX" id="7QH-Hb-bph"/>
+                <constraint firstItem="WQx-mh-YMR" firstAttribute="top" secondItem="JWP-FS-uL4" secondAttribute="bottom" constant="5" id="96n-WL-74D"/>
+                <constraint firstItem="EaB-p9-cdx" firstAttribute="width" secondItem="K9y-P4-J7u" secondAttribute="width" id="DcV-pf-K79"/>
+                <constraint firstItem="K9y-P4-J7u" firstAttribute="centerX" secondItem="aiq-Kp-fDy" secondAttribute="centerX" id="EZd-RX-42L"/>
+                <constraint firstItem="EaB-p9-cdx" firstAttribute="height" secondItem="K9y-P4-J7u" secondAttribute="height" id="Gi5-gw-1OX"/>
+                <constraint firstItem="65T-Ci-jEG" firstAttribute="top" secondItem="EaB-p9-cdx" secondAttribute="bottom" constant="25" id="IXr-ea-nzI"/>
+                <constraint firstItem="aiq-Kp-fDy" firstAttribute="top" secondItem="djk-Vo-orn" secondAttribute="bottom" constant="20" id="JVE-WK-lL4"/>
+                <constraint firstItem="K9y-P4-J7u" firstAttribute="width" secondItem="aiq-Kp-fDy" secondAttribute="width" id="Jvn-TJ-kD1"/>
+                <constraint firstItem="65T-Ci-jEG" firstAttribute="centerX" secondItem="EaB-p9-cdx" secondAttribute="centerX" id="LpV-1b-Zu8"/>
+                <constraint firstItem="djk-Vo-orn" firstAttribute="top" secondItem="WQx-mh-YMR" secondAttribute="bottom" constant="10" id="M9b-QM-X9i"/>
                 <constraint firstItem="JWP-FS-uL4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="OPQ-5k-6yy"/>
-                <constraint firstAttribute="trailing" secondItem="KaF-4o-sYl" secondAttribute="trailing" id="OxM-nn-ysN"/>
-                <constraint firstItem="KaF-4o-sYl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iGL-Xq-Xvk"/>
-                <constraint firstAttribute="bottom" secondItem="KaF-4o-sYl" secondAttribute="bottom" id="mcV-IM-Uoc"/>
+                <constraint firstAttribute="trailing" secondItem="KaF-4o-sYl" secondAttribute="trailing" constant="10" id="OxM-nn-ysN"/>
+                <constraint firstItem="65T-Ci-jEG" firstAttribute="width" secondItem="EaB-p9-cdx" secondAttribute="width" id="Thp-Z8-jrA"/>
+                <constraint firstItem="65T-Ci-jEG" firstAttribute="height" secondItem="EaB-p9-cdx" secondAttribute="height" id="UNi-Hk-L2Z"/>
+                <constraint firstItem="aiq-Kp-fDy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vim-F0-zvI"/>
+                <constraint firstItem="KaF-4o-sYl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="iGL-Xq-Xvk"/>
+                <constraint firstItem="Wb1-QX-EAM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="k7T-ye-oq9"/>
+                <constraint firstAttribute="bottom" secondItem="KaF-4o-sYl" secondAttribute="bottom" constant="5" id="mcV-IM-Uoc"/>
+                <constraint firstAttribute="trailing" secondItem="djk-Vo-orn" secondAttribute="trailing" constant="50" id="ni1-SW-pzO"/>
+                <constraint firstItem="djk-Vo-orn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="pru-B0-iaY"/>
+                <constraint firstItem="K9y-P4-J7u" firstAttribute="height" secondItem="aiq-Kp-fDy" secondAttribute="height" id="viL-Ny-1JJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="34.5" y="-52"/>
+            <point key="canvasLocation" x="-5.5" y="-238"/>
         </view>
     </objects>
 </document>

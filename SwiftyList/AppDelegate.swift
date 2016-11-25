@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var launchScreen    : SLLaunchViewController?
-    var profileScreen   : SLProfileViewController?
+    //var profileScreen   : SLProfileViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navController = UINavigationController()
         launchScreen = SLLaunchViewController()
-        profileScreen = SLProfileViewController()
+        //profileScreen = SLProfileViewController()
         navController.viewControllers = [launchScreen!]
         
         

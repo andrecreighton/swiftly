@@ -19,6 +19,8 @@ static char TAG_ACTIVITY_SHOW;
 
 - (void)sd_setImageWithURL:(NSURL *)url {
     [self sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
+      self.layer.cornerRadius = self.bounds.size.height/2;
+    
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
